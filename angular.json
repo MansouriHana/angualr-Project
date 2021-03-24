@@ -28,7 +28,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           },
@@ -124,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "angular-hello-world"
+  "defaultProject": "angular-hello-world",
+  "cli": {
+    "analytics": "8ca79d43-f1e7-469e-96bb-263eb345dc09"
+  }
 }
