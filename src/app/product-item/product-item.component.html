@@ -1,0 +1,12 @@
+<div class="card" style="width: 18rem;">
+    <img src="../../assets/images/{{product.image}}" alt="">
+    <div class="card-body">
+        <h5 class="card-title">{{product.name}}</h5>
+        <p class="card-text">{{product.price}}</p>
+        <p [ngClass]="{'btn': true, 'btn-danger': product.isOnSale == false, 'btn-success': product.isOnSale == true }">{{product.isOnSale== true? 'Available': 'Not available'}}</p>
+        <p class="card-text">{{product.quantyCart}}</p>
+        <p><button type="button" class="btn btn-success" (click)="increaseQuantity()">+</button>
+
+            <button type="button" [disabled]="product.quantyCart == 0" (click)="decreaseQuantity()" class="btn btn-danger">-</button></p>
+    </div>
+</div>
