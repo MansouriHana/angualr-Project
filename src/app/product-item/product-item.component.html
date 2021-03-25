@@ -3,10 +3,23 @@
     <div class="card-body">
         <h5 class="card-title">{{product.name}}</h5>
         <p class="card-text">{{product.price}}</p>
-        <p [ngClass]="{'btn': true, 'btn-danger': product.isOnSale == false, 'btn-success': product.isOnSale == true }">{{product.isOnSale== true? 'Available': 'Not available'}}</p>
+        <p [ngClass]="{'btn': true, 'btn-danger': product.isOnSale == false, 'btn-success': product.isOnSale == true }">
+            {{product.isOnSale== true? 'Available': 'Not available'}}</p>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">select a number</button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li *ngFor="let number of counter(20);index as i;">
+                    <a class="dropdown-item" href="#">{{i}}</a>
+                </li>
+            </ul>
+        </div>
+        <select>
+          <option *ngFor="let number of counter(20);index as i;" [value]="i">{{i}}</option>
+        </select>
         <p class="card-text">{{product.quantyCart}}</p>
         <p><button type="button" class="btn btn-success" (click)="increaseQuantity()">+</button>
 
-            <button type="button" [disabled]="product.quantyCart == 0" (click)="decreaseQuantity()" class="btn btn-danger">-</button></p>
+            <button type="button" *ngIf="product.quantyCart != 0" (click)="decreaseQuantity()" class="btn btn-danger">-</button>
+        </p>
     </div>
 </div>

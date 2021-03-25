@@ -30,4 +30,7 @@ export class ProductItemComponent implements OnInit {
       this.product.quantyCart--
     }
   }
+  counter(n: number): Array<number> {
+    return Array(n);
+  }
 }
