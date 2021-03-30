@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output ,EventEmitter} from '@angular/core';
 import { Product } from '../product/product';
+import { ProductQuantityChange } from '../product/product-quantity-change';
 
 @Component({
   selector: 'app-product-item',
@@ -7,28 +8,18 @@ import { Product } from '../product/product';
   styleUrls: ['./product-item.component.css']
 })
 export class ProductItemComponent implements OnInit {
-  product!: Product;
+  @Input() public product!: Product;
+  @Output() private quantityChange: EventEmitter<ProductQuantityChange> = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
-    //this.product = new Product(1,, "computer.jpg", 1000, true);
-  
-    this.product={
-      id : 1,
-      image : "computer.jpg",
-      name : "Asus Laptop",
-      price :1000,
-      isOnSale :false,
-      quantyCart:0
-    }
+
   }
   increaseQuantity(): void {
-   this.product.quantyCart++; 
+   this.quantityChange.emit({product:this.product, quantyCart:1});
   }
   decreaseQuantity(): void {
-    if(this.product.quantyCart>0){
-      this.product.quantyCart--
-    }
+    this.quantityChange.emit({product:this.product, quantyCart:-1});
   }
   counter(n: number): Array<number> {
     return Array(n);
