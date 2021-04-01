@@ -1,0 +1,48 @@
+<div class="form-group">
+    <form (ngSubmit)="createProduct(productForm)" #productForm="ngForm">
+        <div ngModelGroup="product">
+            <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label"> Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="name" #productName="ngModel" required placeholder="Enter Product Name" ngModel>
+                </div>
+            </div>
+            <div *ngIf="productName.errors && productName.errors.required">
+                product Name is required
+            </div>
+            <div class="form-group row">
+                <label for="price" class="col-sm-2 col-form-label">Price</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="price" min=0 #productPrice="ngModel" required placeholder="Enter Product price " ngModel>
+                </div>
+            </div>
+            <div *ngIf="productPrice.dirty && productPrice.invalid">
+                <div *ngIf="productPrice.errors.required">
+                    Price Product is required
+                </div>
+
+            </div>
+            <div class="form-group row">
+                <label for="image" class="col-sm-2 col-form-label">Image </label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="image" #productImage="ngModel" required placeholder="Enter Product image " ngModel>
+                </div>
+            </div>
+            <div *ngIf="productImage.dirty && productImage.invalid">
+                <div *ngIf="productImage.errors.required">
+                    Image Product is required
+                </div>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="isOnSale" ngModel>
+                <label for="isOnSale" class="form-check-label">Is Onsel</label>
+            </div>
+        </div>
+        <div style="text-align: center;">
+            <button class="btn btn-primary" type="submit"> Create</button>
+        </div>
+
+
+    </form>
+    <h4>Product {{product | json}}</h4>
+</div>
