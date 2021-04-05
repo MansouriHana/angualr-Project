@@ -1,0 +1,50 @@
+<h2>Create Stock Form</h2>
+<div class="form-group">
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <div class="product-name">
+            <input type="text" placeholder="Product Name" name="ProductName" formControlName="name">
+            <div *ngIf="name.invalid &&
+            (name.dirty ||
+            name.touched)">
+                Product Name is required
+            </div>
+        </div>
+
+        <div class="product-price">
+            <input type="text" placeholder="Product Price" name="ProductPrice" formControlName="price">
+            <div *ngIf="productForm.get('price').invalid &&
+                       (productForm.get('price').dirty||
+                         productForm.get('price').touched)">
+                <div *ngIf="productForm.get('price').errors.required">
+                    Product price is required.
+                </div>
+                <div *ngIf="productForm.get('price').errors.min">
+                    product price must be positive
+                </div>
+            </div>
+        </div>
+        <div class="product-image">
+            <input type="text" placeholder="Product Image" name="productImage" formControlName="image">
+            <div *ngIf="image.invalid &&
+                        (image.dirty || image.touched)">
+                <div *ngIf="image.errors.required">
+                    Product image is required.
+                </div>
+
+            </div>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" class="form-check-input" name="producIsOnSale" formControlName="isOnSale">
+            <label for="isOnSale" class="form-check-label">Is Onsel</label>
+            <div *ngIf="productForm.get('isOnSale').invalid">
+                <div *ngIf="productForm.get('isOnSale').errors.required">
+                    Product image is required.
+                </div>
+
+            </div>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+    <p>Product form value json {{productForm.value | json}}</p>
+    <p>Product form value json {{productForm.status | json}}</p>
+</div>
