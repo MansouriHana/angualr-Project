@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-create-product-reactive',
@@ -12,7 +13,7 @@ export class CreateProductReactiveComponent implements OnInit {
     price: new FormControl(0, [Validators.required, Validators.min(1)]),
     image: new FormControl(null, Validators.required)
   });
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private productService: ProductService) {
     this.createForm();
   }
 
@@ -27,17 +28,18 @@ export class CreateProductReactiveComponent implements OnInit {
   get name() {
     return this.productForm.get('name');
   }
-  get image(){
+  get image() {
     return this.productForm.get('image');
   }
   ngOnInit(): void {
   }
   onSubmit() {
-    if(this.productForm.invalid){
+    if (this.productForm.invalid) {
       console.log('Invalid Product form ');
-    }else{
+    } else {
       console.log('Product Form Value ', this.productForm.value);
+      this.productService.createProduct(this.productForm.value);
     }
-   
+
   }
 }

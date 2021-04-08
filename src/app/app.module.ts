@@ -7,6 +7,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { CreateProductComponent } from './create-product/create-product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CreateProductReactiveComponent } from './create-product-reactive/create-product-reactive.component';
+import { ProductService } from './services/product.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { CreateProductReactiveComponent } from './create-product-reactive/create
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

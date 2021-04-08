@@ -1,3 +1,5 @@
 <div class="row">
-    <app-product-item *ngFor="let product of products" [product]="product" (quantityChange)="onChangeQuantity($event)" (decreaseQuantity)="deleteQuantity()"></app-product-item>
+    <app-product-item *ngFor="let product of products | async" [product]="product" (quantityChange)="onChangeQuantity($event)"></app-product-item>
+
 </div>
+<button (click)="loadingProduct()" class="btn btn-primary">Loading Products</button>
